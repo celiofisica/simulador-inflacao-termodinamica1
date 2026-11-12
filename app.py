@@ -334,7 +334,7 @@ st.markdown(
 
 aba_ideia, aba_preco, aba_fiat, aba_mc, aba_dados, aba_debate = st.tabs([
     "1 · A ideia", "2 · Preço e o parâmetro v", "3 · Inflação fiat",
-    "4 · Monte Carlo: H, F, K, G", "5 · Seus dados", "6 · Debate",
+    "4 · Monte Carlo: H, F, K, G", "5 · Seus dados", "6 · Questões em aberto",
 ])
 
 # ============================================================================
@@ -375,7 +375,7 @@ with aba_ideia:
             "- **Aba 4:** simule milhares de economias, calcule H, F, K, G e estude o atraso "
             "entre os índices e a inflação.\n"
             "- **Aba 5:** aplique as fórmulas a dados reais.\n"
-            "- **Aba 6:** perguntas para levar ao autor."
+            "- **Aba 6:** questões em aberto e extensões possíveis."
         )
         st.warning(
             "**Cuidado com a palavra “momento”.** No artigo, os quatro *momentos de inflação* são "
@@ -680,7 +680,7 @@ with aba_mc:
             "4. A média temporal soma muitos anos e, pelo teorema central do limite, tende à gaussiana "
             "(curtose perto de zero). O pico é uma estatística de extremos e preserva a cauda.\n\n"
             "5. G > K sempre significa M3/M2 crescendo todos os anos; idem para os outros pares. É uma "
-            "afirmação forte e testável sobre a composição da moeda, não uma consequência do modelo."
+            "regularidade forte sobre a composição da moeda, que vale conferir diretamente nas séries brutas."
         )
 
 # ============================================================================
@@ -777,33 +777,38 @@ with aba_dados:
 # ABA 6 - DEBATE
 # ============================================================================
 with aba_debate:
-    st.markdown("### Perguntas para o autor")
-    st.markdown("Pontos que os laboratórios acima tornam concretos. São dúvidas de leitura, não veredictos.")
+    st.markdown("### Questões em aberto e extensões possíveis")
     st.markdown(
-        "**1. A eq. (3.5) e a desigualdade de Jensen.** A condição ⟨D−S⟩ = 0 só garante v = 1 em "
-        "primeira ordem em c. Em segunda ordem aparece c²⟨(D−S)²⟩/2 > 0 (aba 2, experimento 2). "
-        "A heterogeneidade setorial é, então, uma fonte de v > 1 independente da moeda?\n\n"
-        "**2. Relação com a teoria quantitativa.** Pela equação de trocas, MV = PY. Se σ_T é o PIB "
-        "real, v = M/Y = P/V e a inflação fiat é π − ΔV/V; se é o PIB nominal, v = 1/V e os índices "
-        "são simplesmente menos a variação da velocidade da moeda. Qual PIB foi usado? A “variável "
-        "oculta” por trás do atraso seria a velocidade de circulação? O que o arcabouço prevê que "
-        "Fisher e Friedman não previam?\n\n"
-        "**3. Onde entra a termodinâmica nos testes?** A parte empírica usa apenas agregados "
-        "monetários e PIB. Os termos b_k, m_k, b_A e |ΔS| cancelam em v (aba 2, experimento 3) e não "
-        "são medidos. Que observável distinguiria este modelo de um puramente monetário? Como se "
-        "mediria ΔS de um produto?\n\n"
-        "**4. A hierarquia G > K > F > H.** Ela ser preservada por 30 anos em todos os países exige "
-        "que M3/M2, M2/M1 e M1/M0 cresçam ano após ano. Isso aparece nos dados brutos? O texto fala "
-        "em índices “reconstruídos”: como foram tratados o fim da publicação do M3 pelo Fed em 2006 "
-        "e a redefinição do M1 norte-americano em 2020?\n\n"
-        "**5. Dependência de um episódio.** O artigo relata que, em 1995–2019, os índices defasados "
-        "não são significativos, e que o teste de Clark–West fora da amostra fica em p ≈ 0,09 a 0,11. "
-        "Quanto da evidência sobrevive sem 2020–2022 (aba 4, experimento 2)?\n\n"
-        "**6. Estoque de ativos.** A aproximação f(t) ≈ 0 despreza os bens já existentes. Em economias "
-        "com muito crédito imobiliário, parte da moeda nova vai para ativos antigos, não para o PIB. "
-        "Isso explicaria Japão e China melhor do que um repasse “bloqueado”?\n\n"
-        "**7. Nomenclatura.** Chamar H, F, K, G de “momentos” convida à confusão com momentos "
-        "estatísticos. Há alguma estrutura de expansão (como em multipolos) que justifique o nome?"
+        "O que os laboratórios deste app sugerem como próximos passos. São leituras de quem explorou "
+        "o modelo numericamente, oferecidas como contribuição à discussão."
+    )
+    st.markdown(
+        "**1. Heterogeneidade setorial como fonte de v.** A eq. (3.5) vale em primeira ordem em c. "
+        "Indo à segunda ordem aparece o termo c²⟨(D−S)²⟩/2 (aba 2, experimento 2). Isso abre uma "
+        "previsão própria do modelo: economias com desequilíbrios setoriais mais dispersos teriam v "
+        "maior, mesmo com oferta e demanda equilibradas na média. Dá para testar com dados setoriais?\n\n"
+        "**2. Ponte com a teoria quantitativa.** Pela equação de trocas, MV = PY. Com σ_T igual ao PIB "
+        "real, v = P/V e a inflação fiat é π − ΔV/V; com o PIB nominal, v = 1/V. Explicitar essa ponte, "
+        "e qual PIB entra em σ_T, ajudaria o leitor de economia a situar o arcabouço. A velocidade de "
+        "circulação seria uma candidata natural à variável oculta do atraso discutido na seção 5?\n\n"
+        "**3. Um observável para a parte termodinâmica.** Na aplicação empírica, σ_T é aproximado pelo "
+        "PIB, e os termos b_k, m_k, b_A e |ΔS| cancelam em v (aba 2, experimento 3). Uma extensão "
+        "natural é medir σ_T com dados físicos, como exergia ou fluxo de materiais, e comparar o v "
+        "resultante com o monetário. Seria o teste direto da contribuição original do arcabouço.\n\n"
+        "**4. Construção das séries.** A hierarquia G > K > F > H preservada por 30 anos implica "
+        "M3/M2, M2/M1 e M1/M0 crescendo ano após ano, um fato estilizado interessante por si só. "
+        "Um apêndice de dados facilitaria a reprodução: por exemplo, como entram o fim da publicação "
+        "do M3 pelo Fed em 2006 e a redefinição do M1 norte-americano em 2020.\n\n"
+        "**5. Robustez entre regimes.** A seção 5.5.5 já aponta que o conteúdo preditivo se concentra "
+        "em episódios de grande expansão monetária e é fraco em 1995–2019 (aba 4, experimento 2). "
+        "Dados trimestrais, um painel de países ou episódios anteriores, como os anos 1970, "
+        "ampliariam a amostra e permitiriam separar o efeito de 2020–2022.\n\n"
+        "**6. Estoque de ativos.** A aproximação f(t) ≈ 0 é assumida como primeiro passo, e o artigo "
+        "reconhece que os ativos antigos importam. Religar f(t) poderia dar conta de Japão e China: "
+        "moeda nova absorvida por ativos já existentes, em vez de pressionar os preços ao consumidor.\n\n"
+        "**7. Nomenclatura.** Como “momentos” também nomeia média, variância, assimetria e curtose, uma "
+        "nota no texto evitaria confusão. Existe uma estrutura de expansão, como em multipolos, por "
+        "trás do nome?"
     )
     st.divider()
     st.caption(
